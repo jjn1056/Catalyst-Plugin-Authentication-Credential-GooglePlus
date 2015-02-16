@@ -362,6 +362,11 @@ Errietta Kostala <e.kostala@shadowcat.co.uk>
 
 Shadowcat Systems LTD. (L<http://shadow.cat>)
 
+=head1 COPYRIGHT
+
+Copyright (c) 2015 the Catalyst::Plugin::Authentication::Credential::GooglePlus
+L</AUTHOR> and L</CONTRIBUTORS> as listed above.
+
 =head1 LICENSE
 
 This library is free software and may be distributed under the same terms as
