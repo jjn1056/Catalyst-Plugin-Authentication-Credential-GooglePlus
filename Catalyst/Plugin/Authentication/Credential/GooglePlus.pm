@@ -358,6 +358,19 @@ Errietta Kostala <e.kostala@shadowcat.co.uk>
 
 =head1 CONTRIBUTORS
 
+=over
+
+=item
+Matt S. Trout <mst@shadowcat.co.uk>
+
+=item
+Chris Jackson <c.jackson@shadowcat.co.uk>
+
+=item
+Jess Robinson <j.robinson@shadowcat.co.uk>
+
+=back
+
 =head1 SPONSORS
 
 Shadowcat Systems LTD. (L<http://shadow.cat>)
