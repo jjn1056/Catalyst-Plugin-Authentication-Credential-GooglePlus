@@ -9,8 +9,6 @@ use LWP::Simple qw(get);
 use Date::Parse qw(str2time);
 use Try::Tiny;
 
-use warnings;
-use strict;
 use strictures 1;
 
 =head1 NAME
