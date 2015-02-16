@@ -18,6 +18,23 @@ use strictures 1;
 Catalyst::Authentication::Credential::GooglePlus - Authenticates a user using a
 Google Plus token.
 
+=head1 SYNOPSIS
+
+'Plugin::Authentication' => {
+    default => {
+        credential => {
+            class           => 'GooglePlus',
+            token_field     => 'id_token',
+            public_cert_url => 'https://www.googleapis.com/oauth2/v1/certs',
+        },
+        store => {
+            class => 'DBIx::Class',
+            user_model => 'DB::User',
+            ...
+        },
+    },
+},
+
 =head1 DESCRIPTION
 
 Retrieves Google's public certificates, and then retrieves the key from the
@@ -339,10 +356,16 @@ sub decode {
 
 Errietta Kostala <e.kostala@shadowcat.co.uk>
 
+=head1 CONTRIBUTORS
+
+=head1 SPONSORS
+
+Shadowcat Systems LTD. (L<http://shadow.cat>)
+
 =head1 LICENSE
 
-This library is free software. You can redistribute it and/or modify
-it under the same terms as Perl itself.
+This library is free software and may be distributed under the same terms as
+perl itself. See L<http://dev.perl.org/licenses/>.
 
 =cut
 
