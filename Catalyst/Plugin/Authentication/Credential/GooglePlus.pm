@@ -102,7 +102,7 @@ sub authenticate {
     unless ($sub && $openid) {
         Catalyst::Exception->throw(
             'Could not retrieve sub and openid from token! Is the token
-            correct?'
+            correct? Token was ' . $id_token
         );
     }
 
@@ -235,7 +235,7 @@ sub get_key_from_cert {
     try {
         $x509 = Crypt::OpenSSL::X509->new_from_string($cert);
     } catch {
-        Catalyst::Exception->throw("Could not get public key from provided certificate, is the certificate valid?");
+        Catalyst::Exception->throw("Could not get public key from provided certificate, is the certificate valid?\nCert was:" . $cert );
     };
 
     if ($self->is_cert_expired($x509)) {
@@ -247,7 +247,7 @@ sub get_key_from_cert {
         } else {
             Catalyst::Exception->throw("Something is very wrong; we were given
                 an expired cert and got another expired cert trying to get a
-                new one!");
+                new one! \nCert was:" . $cert);
         }
     }
 
@@ -312,7 +312,7 @@ sub decode {
                 )
             );
         } catch {
-            Catalyst::Exception->throw("Could not decode token, is the token valid?");
+            Catalyst::Exception->throw("Could not decode token, is the token valid? token is " . $token);
         };
 
         my $kid = $details->{kid};
@@ -329,7 +329,7 @@ sub decode {
     try {
         $result = JSON::WebToken->decode($token, $pubkey);
     } catch {
-        Catalyst::Exception->throw("Could not decode the given token with the public key!");
+        Catalyst::Exception->throw("Could not decode the given token with the public key! Token is " . $token . " and pubkey is " . $pubkey);
     };
 
     return $result;
