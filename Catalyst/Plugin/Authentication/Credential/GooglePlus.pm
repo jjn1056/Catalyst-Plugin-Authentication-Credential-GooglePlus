@@ -90,7 +90,7 @@ sub authenticate {
     $id_token ||= $c->req->method eq 'GET' ?
         $c->req->query_params->{$field} : $c->req->body_params->{$field};
 
-    if (!$id_token) {
+    unless ($id_token) {
         Catalyst::Exception->throw("$field not specified.");
     }
 
@@ -99,7 +99,7 @@ sub authenticate {
     my $sub = $userinfo->{sub};
     my $openid = $userinfo->{openid_id};
 
-    if (!$sub || !$openid) {
+    unless ($sub && $openid) {
         Catalyst::Exception->throw(
             'Could not retrieve sub and openid from token! Is the token
             correct?'
@@ -171,10 +171,10 @@ sub retrieve_certs {
         }
     }
 
-    if (!$cached) {
+    unless ($cached) {
         my $certs_encoded = get($url);
 
-        if (!$certs_encoded) {
+        unless ($certs_encoded) {
             Catalyst::Exception->throw("Could not GET $url! Please check the value of your public_cert_url config!");
         }
 
@@ -239,7 +239,7 @@ sub get_key_from_cert {
     };
 
     if ($self->is_cert_expired($x509)) {
-        if (!$recursive) {
+        unless ($recursive) {
             # If we ended up here, we were given
             # an old $certs string from the user.
             # Let's force getting another.
@@ -302,7 +302,7 @@ Decoded JSON object from the decrypted token.
 sub decode {
     my ($self, $token, $certs, $pubkey) = @_;
 
-    if (!$pubkey) {
+    unless ($pubkey) {
         my $details;
 
         try {
@@ -317,8 +317,8 @@ sub decode {
 
         my $kid = $details->{kid};
 
-        if (!$kid) {
-            Catalyst::Exception->throw("Decoded token has no `kid` member; is token valid?");
+        unless ($kid) {
+            Catalyst::Exception->throw("Decoded token has no `kid` member; is token valid? token is " . $token);
         }
 
         $pubkey = $self->get_key_from_cert($kid, $certs);
