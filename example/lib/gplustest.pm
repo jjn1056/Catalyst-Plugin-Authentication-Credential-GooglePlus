@@ -44,7 +44,9 @@ __PACKAGE__->config(
     'Plugin::Authentication' => {
         default => {
             credential => {
-                class => 'GooglePlus',
+                class           => 'GooglePlus',
+                token_field     => 'id_token',
+                public_cert_url => 'https://www.googleapis.com/oauth2/v1/certs',
             },
             store => {
                 class => 'DBIx::Class',

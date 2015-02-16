@@ -147,7 +147,7 @@ sub retrieve_certs {
     my $certs;
     my $cache;
 
-    $url ||= ( $c->config->{'Authentication::Credential::Google'}->{public_cert_url} || 'https://www.googleapis.com/oauth2/v1/certs' );
+    $url ||= ( $self->{public_cert_url} || 'https://www.googleapis.com/oauth2/v1/certs' );
 
     if ( ($c->registered_plugins('Catalyst::Plugin::Cache')) && ($cache = $c->cache) ) {
         if ($certs = $cache->get('certs')) {
