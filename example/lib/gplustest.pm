@@ -21,10 +21,12 @@ use Catalyst qw/
     ConfigLoader
     Static::Simple
     Authentication
+    Cache
 /;
 
 extends 'Catalyst';
 
+use Cache::FileCache;
 our $VERSION = '0.01';
 
 # Configure the application.
@@ -47,13 +49,26 @@ __PACKAGE__->config(
                 class           => 'GooglePlus',
                 token_field     => 'id_token',
                 public_cert_url => 'https://www.googleapis.com/oauth2/v1/certs',
+                cache_key       => 'auth_gplus_cache',
+                use_context_cache
+                                => 1,
             },
+
             store => {
                 class => 'DBIx::Class',
                 user_model => 'DB::User',
             },
         },
     },
+
+    'Plugin::Cache' => {
+        backend => {
+            class => 'Cache::FileCache',
+            namespace => 'cache',
+            default_expires_in => 86400,
+        },
+    },
+
 );
 
 # Start the application

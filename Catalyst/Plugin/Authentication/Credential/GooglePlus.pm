@@ -100,6 +100,10 @@ sub authenticate {
 
     my $field = $self->{token_field};
 
+    if (my $cache = $self->get_cache($c)) {
+        $self->{cache} ||= $cache;
+    }
+
     my $id_token = $authinfo->{$field};
 
     $id_token ||= $c->req->method eq 'GET' ?
@@ -164,8 +168,8 @@ sub retrieve_certs {
 
     $url ||= ( $self->{public_cert_url} || 'https://www.googleapis.com/oauth2/v1/certs' );
 
-    if ( ($c->registered_plugins('Catalyst::Plugin::Cache')) && ($cache = $c->cache) ) {
-        if ($certs = $cache->get('certs')) {
+    if ( $cache = $self->{cache} ) {
+        if ($certs = $cache->get($self->{cache_key})) {
             try {
                 $certs = decode_json($certs);
             } catch  {
@@ -200,7 +204,7 @@ sub retrieve_certs {
         };
 
         if ($cache) {
-            $cache->set('certs', $certs_encoded);
+            $cache->set($self->{cache_key}, $certs_encoded);
         }
     }
 
@@ -348,6 +352,16 @@ sub decode {
     };
 
     return $result;
+}
+
+sub get_cache {
+    my ($self, $c) = @_;
+
+    if ($self->{use_context_cache}) {
+        return $c->cache;
+    } else {
+        return $self->{cache};
+    }
 }
 
 =head1 AUTHOR
