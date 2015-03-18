@@ -11,6 +11,8 @@ use Try::Tiny;
 
 use strictures 1;
 
+our $VERSION = 0.1;
+
 =head1 NAME
 
 Catalyst::Authentication::Credential::GooglePlus - Authenticates a user using a
