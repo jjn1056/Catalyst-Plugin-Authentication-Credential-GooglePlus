@@ -2,7 +2,6 @@ package Catalyst::Plugin::Authentication::Credential::GooglePlus;
 
 use Crypt::OpenSSL::X509;
 use JSON::WebToken;
-use IO::All;
 use JSON::MaybeXS;
 use MIME::Base64;
 use LWP::Simple qw(get);

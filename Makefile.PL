@@ -14,7 +14,9 @@ requires        'LWP::Simple';
 requires        'Date::Parse';
 requires        'Try::Tiny';
 requires        'strictures';
+requires        'LWP::Protocol::https';
+requires        'Crypt::OpenSSL::RSA';
 
-no_index       'directory'   => 'example';
+no_index        'directory'   => 'example';
 
 WriteAll;
