@@ -40,6 +40,9 @@ Retrieves Google's public certificates, and then retrieves the key from the
 cert using L<Crypt::OpenSSL::X509>. Finally, uses the pubkey to decrypt a
 Google token using L<JSON::WebToken>.
 
+See https://github.com/errietta/Catalyst-Plugin-Authentication-Credential-GooglePlus-example
+for an example.
+
 =cut
 
 sub new {
@@ -365,6 +368,20 @@ sub get_cache {
     }
 }
 
+=head1 CAVEATS
+
+=over
+
+=item
+We currently have no automated (unit) tests..
+
+=item
+The code that verifies the key from Google (L</get_key_from_cert> only checks
+if the key has expired. It does not check that the key is signed by the right
+people - i.e. a correctly formatted self-signed key would still work...
+
+=back
+
 =head1 AUTHOR
 
 Errietta Kostala <e.kostala@shadowcat.co.uk>
@@ -386,7 +403,15 @@ Jess Robinson <j.robinson@shadowcat.co.uk>
 
 =head1 SPONSORS
 
+=over
+
+=item
 Shadowcat Systems LTD. (L<http://shadow.cat>)
+
+=item
+Tara L Andrews, Digital Humanities, University of Bern
+
+=back
 
 =head1 COPYRIGHT
 
