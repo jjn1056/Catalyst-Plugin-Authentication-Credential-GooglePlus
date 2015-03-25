@@ -376,7 +376,7 @@ sub get_cache {
 We currently have no automated (unit) tests..
 
 =item
-The code that verifies the key from Google (L</get_key_from_cert> only checks
+The code that verifies the key from Google (L</get_key_from_cert>) only checks
 if the key has expired. It does not check that the key is signed by the right
 people - i.e. a correctly formatted self-signed key would still work...
 
