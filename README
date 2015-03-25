@@ -1,10 +1,6 @@
-Catalyst::Authentication::Credential::GooglePlus - Authenticates a user using a
-Google Plus token.
+Catalyst::Authentication::Credential::GooglePlus - Authenticates a user using a Google Plus token.
 
-Suppose you create a G+ login button using
-https://developers.google.com/+/web/signin/add-button, this module decrypts the
-retrieved token, retrieving information that can identify your user, such as G+
-id, email, etc.
+Suppose you create a G+ login button using https://developers.google.com/+/web/signin/add-button, this module decrypts the retrieved token, retrieving information that can identify your user, such as G+ id, email, etc.
 
 INSTALLATION
 
@@ -16,8 +12,7 @@ To install this module, run the following commands:
 
 SUPPORT AND DOCUMENTATION
 
-After installing, you can find documentation for this module with the
-perldoc command.
+After installing, you can find documentation for this module with the perldoc command.
 
     perldoc Catalyst::Authentication::Credential::GooglePlus
 
@@ -43,10 +38,8 @@ Tara L Andrews, Digital Humanities, University of Bern
 
 LICENSE AND COPYRIGHT
 
-Copyright (c) 2015 the Catalyst::Plugin::Authentication::Credential::GooglePlus
-AUTHOR and CONTRIBUTORS as listed above.
+Copyright (c) 2015 the Catalyst::Plugin::Authentication::Credential::GooglePlus AUTHOR and CONTRIBUTORS as listed above.
 
 LICENSE
 
-This library is free software and may be distributed under the same terms as
-perl itself. See L<http://dev.perl.org/licenses/>.
+This library is free software and may be distributed under the same terms as perl itself. See L<http://dev.perl.org/licenses/>.
